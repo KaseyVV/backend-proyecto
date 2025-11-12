@@ -12,6 +12,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const juego = await Juego.findById(req.params.id);
+    if (!juego) {
+      return res.status(404).json({ error: "Juego no encontrado" });
+    }
+    res.json(juego);
+  } catch (err) {
+    res.status(500).json({ error: "Error al obtener el juego" });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const nuevoJuego = new Juego(req.body);

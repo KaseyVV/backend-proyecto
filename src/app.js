@@ -9,11 +9,14 @@ const reseñasRoutes = require("./routes/reseñas");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 app.use(express.json());
 
-app.use("/juegos", juegosRoutes);
-app.use("/reseñas", reseñasRoutes);
+app.use("/api/juegos", juegosRoutes);
+app.use("/api/reseñas", reseñasRoutes);
 
 app.get("/", (req, res) => {
   res.send("API funcionando");

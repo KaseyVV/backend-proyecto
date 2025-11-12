@@ -7,11 +7,11 @@ const JuegoSchema = new mongoose.Schema({
     trim: true,
   },
   genero: {
-    type: String,
+    type: [String],
     required: false
   },          
   plataforma: {
-    type: String,
+    type: [String],
     required: true
   },  
   añoLanzamiento: {
@@ -23,6 +23,11 @@ const JuegoSchema = new mongoose.Schema({
   desarrollador: {
     type: String,
     required: false
+  },
+  dificultad: {
+    type: String,
+    enum: ["facil", "normal", "dificil"],
+    default: "normal"
   },
   imagenPortada: {
     type: String,
@@ -36,6 +41,17 @@ const JuegoSchema = new mongoose.Schema({
   completado: {
     type: Boolean,
     default: false
+  },
+    horasJugadas: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  puntuacion: {
+    type: Number,
+    min: 0,
+    max: 5,
+    default: 0
   },
   fechaCreacion: {
     type: Date,

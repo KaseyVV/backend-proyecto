@@ -9,22 +9,13 @@ const ReseñaSchema = new mongoose.Schema({
   puntuacion: {
     type: Number,
     min: 0,
-    max: 5,
+    max: 10,
     required: true
   },
   textoReseña: {
     type: String,
     required: true,
     trim: true
-  },
-  horasJugadas: {
-    type: Number,
-    default: 0
-  },
-  dificultad: {
-    type: String,
-    enum: ["facil", "normal", "dificil"],
-    default: "normal"
   },
   recomendaria: {
     type: Boolean,
