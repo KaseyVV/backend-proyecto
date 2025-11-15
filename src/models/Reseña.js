@@ -1,15 +1,20 @@
 const mongoose = require("mongoose");
 
-const ReseñaSchema = new mongoose.Schema({
+const ReseniaSchema = new mongoose.Schema({
   juegoId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Juego",
     required: true
   },
+  autor: {
+    type: String,
+    requerid: true,
+    trim: true
+  },
   puntuacion: {
     type: Number,
-    min: 0,
-    max: 10,
+    min: 1,
+    max: 5,
     required: true
   },
   textoReseña: {
@@ -29,13 +34,6 @@ const ReseñaSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, {
-  timestamps: false
 });
 
-ReseñaSchema.pre("save", function (next) {
-  this.fechaActualizacion = new Date();
-  next();
-});
-
-module.exports = mongoose.model("Reseña", ReseñaSchema);
+module.exports = mongoose.model("Reseña", ReseniaSchema);

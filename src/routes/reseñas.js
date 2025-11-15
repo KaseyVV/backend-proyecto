@@ -3,18 +3,21 @@ const Reseña = require("../models/Reseña");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/:juegoId", async (req, res) => {
   try {
-    const reseñas = await Reseña.find().populate("juegoId", "titulo genero plataforma");
+    const reseñas = await Reseña.find({juegoId: req.params.juegoId});
     res.json(reseñas);
   } catch (err) {
     res.status(500).json({ error: "Error al obtener las reseñas" });
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/:juegoId", async (req, res) => {
   try {
-    const nuevaReseña = new Reseña(req.body);
+    const nuevaReseña = new Reseña({
+      ...req.body,
+      juegoId: req.params.juegoId
+    });
     const guardado = await nuevaReseña.save();
     res.status(201).json(guardado);
   } catch (err) {

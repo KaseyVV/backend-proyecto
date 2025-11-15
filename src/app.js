@@ -16,7 +16,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/juegos", juegosRoutes);
-app.use("/api/reseñas", reseñasRoutes);
+app.use("/api/resenias", reseñasRoutes);
 
 app.get("/", (req, res) => {
   res.send("API funcionando");
